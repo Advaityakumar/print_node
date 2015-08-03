@@ -1,5 +1,4 @@
 require 'open-uri'
-require 'byebug'
 module PrintNode
 
   # This module provides API requests to Print Pdf files, Get printers detail,
@@ -15,7 +14,6 @@ module PrintNode
     # Creates a new PrintNode::PrintJob instance.
 
     def initialize
-      byebug
       @connection = connection || PrintNode::Client.connection
     end
 

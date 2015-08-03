@@ -1,4 +1,3 @@
-require 'byebug'
 module PrintNode
   class Client
 
