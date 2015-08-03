@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'print_node'
+
+require 'pry'
+Pry.start
+
