@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['akumar@enbake.com']
 
   spec.summary       = %q{Ruby client for Print Pdf File }
-  spec.homepage      = 'http://github.com/Advaityakumar/print_node'
+  spec.homepage      = 'http://github.com/advaityakumar/print_node'
   spec.license       = 'MIT'
 
 
