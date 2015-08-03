@@ -27,10 +27,9 @@ Print Node is a wrapper that contains methods which print the pdf files and get 
 ##in config.yml file
 
 ```ruby
-common: &common
-	print_node:
-	    username: 'your_printnode_api_username'
-	    password: 'your_printnode_api_key'
+print_node:
+    username: 'your_printnode_api_username'
+    password: 'your_printnode_api_key'
 ```
 
 ### Configuration Options
@@ -60,7 +59,8 @@ Print the pdf file.
 ```ruby
 # To print the pdf file you have to pass arguments (printer_id, title, contentType and content) in this method.
 Eg:
-client.print_file(51012, 'Pdftitle', 'pdf_base64', 'http://online.wsj.com/public/resources/documents/Reprint_Samples.pdf')
+params = {printer_id: 51012, title: 'Pdftitle', contentType: 'pdf_base64', content: 'http://online.wsj.com/public/resources/documents/Reprint_Samples.pdf'}
+client.print_file(params)
 
 # In this method either you can pass the local url of your file and if you want to print online pdf file then pass that url.
 
