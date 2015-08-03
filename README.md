@@ -22,13 +22,15 @@ Or install it yourself as:
 
 ## Usage
 
-Print Node is a wrapper that contains methods which print the pdf files and get printer details. Create printnode api key and add api creds in .env file.
+Print Node is a wrapper that contains methods which print the pdf files and get printer details. Create printnode api key and add api creds in config.yml file.
 
-##in .env file
+##in config.yml file
 
 ```ruby
-USERNAME='your_printnode_api_username'
-PASSWORD='your_printnode_api_key'
+common: &common
+	print_node:
+	    username: 'your_printnode_api_username'
+	    password: 'your_printnode_api_key'
 ```
 
 ### Configuration Options
@@ -36,7 +38,7 @@ PASSWORD='your_printnode_api_key'
 You can configure credentails via `PrintNode::PrintJob.new`.
 
 ```ruby
-client = PrintNode::PrintJob.new
+client = PrintNode::PrintJob.new(username: your_printnode_api_username, password: your_printnode_api_key)
 ```
 
 Please take care to **never commit credentials to source control**. We strongly recommended loading credentials from an external source.
@@ -56,9 +58,9 @@ client.get_printers
 Print the pdf file.
 
 ```ruby
-# To print the pdf file you have to pass three arguments (printer_id, title and content) in this method.
+# To print the pdf file you have to pass arguments (printer_id, title, contentType and content) in this method.
 Eg:
-client.print_file(51012, 'Pdftitle', 'http://online.wsj.com/public/resources/documents/Reprint_Samples.pdf')
+client.print_file(51012, 'Pdftitle', 'pdf_base64', 'http://online.wsj.com/public/resources/documents/Reprint_Samples.pdf')
 
 # In this method either you can pass the local url of your file and if you want to print online pdf file then pass that url.
 

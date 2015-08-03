@@ -5,19 +5,19 @@ module PrintNode
       :password,
       :address
 
-    def self.connection
-      PrintNode::Client.new.connection
+    def self.connection(options={})
+      PrintNode::Client.new(options).connection
     end
 
-    def initialize
-      @username      = username      || ENV['USERNAME']
-      @password      = password      || ENV['PASSWORD']
-      @address       = address       || 'https://api.printnode.com'
+    def initialize(options={})
+      @username      = options[:username]      || ENV['USERNAME']
+      @password      = options[:password]      || ENV['PASSWORD']
+      @address       = 'https://api.printnode.com'
     end
 
     def connection
       Faraday.new(url: @address) do |conn|
-        conn.basic_auth ENV['USERNAME'], ENV['PASSWORD']
+        conn.basic_auth @username, @password
         conn.request  :json
         conn.use      Faraday::Response::RaiseError
         conn.adapter  Faraday.default_adapter

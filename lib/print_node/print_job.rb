@@ -13,8 +13,8 @@ module PrintNode
 
     # Creates a new PrintNode::PrintJob instance.
 
-    def initialize
-      @connection = connection || PrintNode::Client.connection
+    def initialize(params={})
+      @connection = PrintNode::Client.connection(username: params[:username], password: params[:password])
     end
 
     # Get all Printers
@@ -27,20 +27,21 @@ module PrintNode
     # Print Pdf File 
     # @param printer_id [Integer]
     # @param title [String]
+    # @param contentType [String]
     # @param content[String] pass the url of pdf file or online url of pdf file
     # @return id of print job
 
-    def print_file(printer_id, title, content)
+    def print_file(options={})
       begin
-        pdf_content = open(content) {|io| io.read}
+        pdf_content = open(options[:content]) {|io| io.read}
       rescue OpenURI::HTTPError
         return
       end
       main_content = Base64.encode64(pdf_content)
       params = {
-        printerId:     printer_id.try(:to_i),
-         title:           title,
-        contentType:      "pdf_base64",
+        printerId:     options[:printer_id].try(:to_i),
+         title:           options[:title],
+        contentType:      options[:contentType],
         content:      main_content,
         source:    "Web Interface"
       }

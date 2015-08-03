@@ -9,7 +9,7 @@ end
 
 # PrintPdf and get printers detail  examples
 
-printer_detail = PrintNode::PrintJob.new
+printer_detail = PrintNode::PrintJob.new(username: 'your-print_node_api_username', password: 'your-print_node_api_password')
 # get all printer
 results = printer_detail.get_printers
 
