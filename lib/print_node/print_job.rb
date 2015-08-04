@@ -39,7 +39,7 @@ module PrintNode
       end
       main_content = Base64.encode64(pdf_content)
       params = {
-        printerId:     options[:printer_id].try(:to_i),
+        printerId:     options[:printer_id],
          title:           options[:title],
         contentType:      options[:contentType],
         content:      main_content,

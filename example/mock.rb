@@ -14,7 +14,8 @@ printer_detail = PrintNode::PrintJob.new(username: 'your-print_node_api_username
 results = printer_detail.get_printers
 
 #Print pdf file
-response = printer_detail.print_file(51012, 'SecondPdfFile',  '/home/enbake/Pictures/printnodepic/label_4in_x_6in_ups.pdf')
+params = {printer_id: 51012, title: 'Pdftitle', contentType: 'pdf_base64', content: 'http://online.wsj.com/public/resources/documents/Reprint_Samples.pdf'}
+response = printer_detail.print_file(params)
 
 #View Print Jobs
 response = printer_detail.view_print_jobs
